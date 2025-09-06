@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Steps() Demo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        margin-top: 50px;
+        font-family: sans-serif;
+      }
+
+      .track {
+        width: 300px;
+        height: 40px;
+        background: #eee;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+
+      .box {
+        width: 40px;
+        height: 40px;
+        background: teal;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* Smooth animation */
+      @keyframes moveSmooth {
+        from {
+          left: 0;
+        }
+        to {
+          left: 260px;
+        }
+      }
+      .smooth {
+        animation: moveSmooth 3s linear infinite;
+      }
+
+      /* Steps animation */
+      @keyframes moveSteps {
+        from {
+          left: 0;
+        }
+        to {
+          left: 260px;
+        }
+      }
+      .steps {
+        animation: moveSteps 3s steps(5, start) infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Smooth Animation (linear)</h2>
+    <div class="track">
+      <div class="box smooth"></div>
+    </div>
+
+    <h2>Stepped Animation (steps(5, end))</h2>
+    <div class="track">
+      <div class="box steps"></div>
+    </div>
+  </body>
+</html>
