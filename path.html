@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS Motion Path Demo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+        font-family: sans-serif;
+        margin: 50px;
+      }
+
+      .track {
+        width: 500px;
+        height: 200px;
+        background: #eee;
+        border: 1px solid #ccc;
+        position: relative;
+        overflow: visible;
+      }
+
+      .box {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .box1 {
+        background: teal;
+        offset-path: path("M0,150 C100,50 400,50 500,150");
+        offset-distance: 0%;
+        offset-rotate: auto;
+        animation: movePath1 4s linear infinite;
+      }
+
+      .box2 {
+        background: tomato;
+        offset-path: path("M0,50 C150,200 350,0 500,100");
+        offset-distance: 0%;
+        offset-rotate: auto;
+        animation: movePath2 5s ease-in-out infinite;
+      }
+
+      @keyframes movePath1 {
+        0% {
+          offset-distance: 0%;
+        }
+        100% {
+          offset-distance: 100%;
+        }
+      }
+
+      @keyframes movePath2 {
+        0% {
+          offset-distance: 0%;
+        }
+        100% {
+          offset-distance: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Two Boxes Following Different Paths</h2>
+    <div class="track">
+      <div class="box box1"></div>
+      <div class="box box2"></div>
+    </div>
+  </body>
+</html>

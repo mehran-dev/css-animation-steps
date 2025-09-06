@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>will-change Demo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        margin: 50px;
+        font-family: sans-serif;
+      }
+
+      .track {
+        width: 400px;
+        height: 40px;
+        background: #eee;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+
+      .box {
+        width: 40px;
+        height: 40px;
+        background: teal;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(0);
+        /* Hint browser this element will animate */
+        will-change: transform;
+        transition: transform 2s ease;
+      }
+
+      .box.move {
+        transform: translateX(360px);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Click the box to move it smoothly (using will-change)</h2>
+    <div class="track">
+      <div class="box" id="box"></div>
+    </div>
+
+    <script>
+      const box = document.getElementById("box");
+      box.addEventListener("click", () => {
+        box.classList.toggle("move");
+      });
+    </script>
+  </body>
+</html>
