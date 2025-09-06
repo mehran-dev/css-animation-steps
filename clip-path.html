@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clip-Path & Mask Animation</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        margin: 50px;
+        font-family: sans-serif;
+      }
+
+      /* Clip-Path Animation */
+      .clip-box {
+        width: 200px;
+        height: 200px;
+        background-color: teal;
+        clip-path: circle(0% at 50% 50%);
+        animation: revealCircle 2s forwards;
+      }
+
+      @keyframes revealCircle {
+        0% {
+          clip-path: circle(0% at 50% 50%);
+        }
+        100% {
+          clip-path: circle(100% at 50% 50%);
+        }
+      }
+
+      /* Mask Animation */
+      .mask-box {
+        width: 200px;
+        height: 200px;
+        background: tomato;
+        mask-image: linear-gradient(to right, black 0%, white 100%);
+        -webkit-mask-image: linear-gradient(to right, black 0%, white 100%);
+        mask-size: 200% 100%;
+        -webkit-mask-size: 200% 100%;
+        mask-position: left;
+        -webkit-mask-position: left;
+        animation: maskReveal 3s forwards;
+      }
+
+      @keyframes maskReveal {
+        0% {
+          mask-position: left;
+          -webkit-mask-position: left;
+        }
+        100% {
+          mask-position: right;
+          -webkit-mask-position: right;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Clip-Path and Mask Animation Demo</h2>
+
+    <div class="clip-box"></div>
+    <div class="mask-box"></div>
+  </body>
+</html>

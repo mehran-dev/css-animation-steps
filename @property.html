@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>@property Animation Demo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        margin: 50px;
+        font-family: sans-serif;
+      }
+
+      /* Define custom animatable properties */
+      @property --x-pos {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 0px;
+      }
+
+      @property --angle {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+
+      @property --color {
+        syntax: "<color>";
+        inherits: false;
+        initial-value: teal;
+      }
+
+      .box {
+        width: 60px;
+        height: 60px;
+        background-color: var(--color);
+        transform: translateX(var(--x-pos)) rotate(var(--angle));
+        animation: animateBox 4s ease-in-out infinite alternate;
+      }
+
+      @keyframes animateBox {
+        0% {
+          --x-pos: 0px;
+          --angle: 0deg;
+          --color: teal;
+        }
+        50% {
+          --x-pos: 300px;
+          --angle: 180deg;
+          --color: tomato;
+        }
+        100% {
+          --x-pos: 0px;
+          --angle: 360deg;
+          --color: purple;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Animating Boxes with Custom CSS Variables</h2>
+    <div class="box"></div>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Interactive Animation with CSS Variables</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        margin: 50px;
+        font-family: sans-serif;
+      }
+
+      @property --x-pos {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 0px;
+      }
+
+      @property --angle {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
+      }
+
+      .box {
+        width: 60px;
+        height: 60px;
+        background-color: teal;
+        transform: translateX(var(--x-pos)) rotate(var(--angle));
+        will-change: transform;
+        cursor: pointer;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Click "Start" to animate the box</h2>
+    <div class="box" id="box"></div>
+    <button id="startBtn">Start</button>
+    <button id="pauseBtn">Pause</button>
+    <button id="reverseBtn">Reverse</button>
+
+    <script>
+      const box = document.getElementById("box");
+      const startBtn = document.getElementById("startBtn");
+      const pauseBtn = document.getElementById("pauseBtn");
+      const reverseBtn = document.getElementById("reverseBtn");
+
+      let x = 0;
+      let angle = 0;
+      let speed = 2;
+      let rotating = 5;
+      let animationId = null;
+
+      function animate() {
+        x += speed;
+        angle += rotating;
+
+        // Bounce back when reaching 300px
+        if (x > 300 || x < 0) speed = -speed;
+        if (angle > 360) angle -= 360;
+
+        box.style.setProperty("--x-pos", x + "px");
+        box.style.setProperty("--angle", angle + "deg");
+
+        animationId = requestAnimationFrame(animate);
+      }
+
+      startBtn.addEventListener("click", () => {
+        if (!animationId) animate();
+      });
+
+      pauseBtn.addEventListener("click", () => {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+      });
+
+      reverseBtn.addEventListener("click", () => {
+        speed = -speed;
+      });
+    </script>
+  </body>
+</html>
