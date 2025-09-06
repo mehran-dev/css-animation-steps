@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>animation-fill-mode Demo</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        font-family: sans-serif;
+        margin: 50px;
+      }
+
+      .track {
+        width: 400px;
+        height: 40px;
+        background: #eee;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+
+      .box {
+        width: 40px;
+        height: 40px;
+        background: teal;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      @keyframes moveRight {
+        from {
+          left: 0;
+        }
+        to {
+          left: 360px;
+        }
+      }
+
+      .none {
+        animation: moveRight 3s linear;
+      }
+
+      .forwards {
+        animation: moveRight 3s linear forwards;
+      }
+
+      .backwards {
+        animation: moveRight 3s linear 2s backwards; /* delay + backwards */
+      }
+
+      .both {
+        animation: moveRight 3s linear 2s both; /* delay + both */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>fill-mode: none (default)</h2>
+    <div class="track">
+      <div class="box none"></div>
+    </div>
+
+    <h2>fill-mode: forwards</h2>
+    <div class="track">
+      <div class="box forwards"></div>
+    </div>
+
+    <h2>fill-mode: backwards (with delay)</h2>
+    <div class="track">
+      <div class="box backwards"></div>
+    </div>
+
+    <h2>fill-mode: both (with delay)</h2>
+    <div class="track">
+      <div class="box both"></div>
+    </div>
+  </body>
+</html>

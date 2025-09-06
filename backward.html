@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fill Mode Demo</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .track {
+        width: 400px;
+        height: 40px;
+        background: #eee;
+        border: 1px solid #ccc;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      .box {
+        width: 40px;
+        height: 40px;
+        background: teal;
+        position: absolute;
+        top: 0;
+        left: 200px; /* original CSS state (center) */
+      }
+
+      @keyframes moveRight {
+        from {
+          left: 0;
+        }
+        to {
+          left: 360px;
+        }
+      }
+
+      .none {
+        animation: moveRight 3s linear;
+      }
+
+      .forwards {
+        animation: moveRight 3s linear forwards;
+      }
+
+      .backwards {
+        animation: moveRight 3s linear 2s backwards; /* delay */
+      }
+
+      .both {
+        animation: moveRight 3s linear 2s both; /* delay */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>none (default)</h2>
+    <div class="track"><div class="box none"></div></div>
+
+    <h2>forwards (stick at the end)</h2>
+    <div class="track"><div class="box forwards"></div></div>
+
+    <h2>backwards (during delay, take start keyframe)</h2>
+    <div class="track"><div class="box backwards"></div></div>
+
+    <h2>both (during delay: start; after finish: end)</h2>
+    <div class="track"><div class="box both"></div></div>
+  </body>
+</html>
